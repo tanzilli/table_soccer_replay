@@ -1,0 +1,55 @@
+body { 
+	background-color: black;
+	background-image: url("../images/soccer_field.jpg"); 
+}
+
+
+.score_line {
+	position: absolute;
+	top: 35px;
+	width: 810px;
+	height: 180px;
+	opacity: 0.8;
+	border-style: solid;
+	border-width: 5px;
+	border-color: black;
+}
+
+#blue_score_line {
+	left: 125px;
+	background-color: blue;
+}
+
+#red_score_line {
+	right: 125px;
+	background-color: red;
+}
+
+.score {
+	position: absolute;
+	top: 40px;
+	color: black;
+	font-size: 150px;
+	font-family: verdana;
+	font-weight: bold;
+	text-shadow:
+		-3px -3px 0 yellow,
+		3px -3px 0 yellow,
+		-3px 3px 0 yellow,
+		3px 3px 0 yellow;
+}
+
+#blue_score {
+	left: 140px;
+}
+
+#red_score {
+	right: 140px;
+}
+
+#goal {
+	position: absolute;
+	top: 50px;
+	left: 710px;
+	display: none;
+}

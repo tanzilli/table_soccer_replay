@@ -1,0 +1,91 @@
+// Doc API Paho: https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
+// Esempio Montefusco: https://github.com/AcmeSystemsProjects/toa/blob/montefusco/www/js/controllers_st_sd.js
+
+var mqtt_broker="biliardino3.local";
+var mqtt_port=1884;
+var mqtt_mainpage_client;
+var message_line;
+
+
+// Estrae parametri dalla url che ha chiamato la pagina
+// https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+// Uso $.QueryString["param"]
+(function($) {
+    $.QueryString = (function(paramsArray) {
+        let params = {};
+
+        for (let i = 0; i < paramsArray.length; ++i)
+        {
+            let param = paramsArray[i]
+                .split('=', 2);
+
+            if (param.length !== 2)
+                continue;
+
+            params[param[0]] = decodeURIComponent(param[1].replace(/\+/g, " "));
+        }
+
+        return params;
+    })(window.location.search.substr(1).split('&'))
+})(jQuery);
+
+function loadVideo(videofile) {
+	$("#videoclip").get(0).pause();
+    $("#mp4video").attr('src', 'video/' + videofile);
+    $("#videoclip").get(0).load();
+    $("#videoclip").get(0).play();	
+}
+
+// Genera una stringa random di caratteri
+// Viane usata per le funzioni MQTT
+var randomString = function(length) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for(var i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+}
+
+function onConnect() {
+	console.log("Connected");
+	mqtt_mainpage_client.subscribe("biliardino/#");
+}	
+
+function onMessageArrived(message) {
+	console.log(message.destinationName + " " + message.payloadString);
+	if (message.destinationName.includes("blue_score")) {
+		$("#blue_score").text(message.payloadString);
+	}
+	if (message.destinationName.includes("red_score")) {
+		$("#red_score").text(message.payloadString);
+	}
+	if (message.destinationName.includes("goal")) {
+		var x = document.getElementById("audio_goal");
+		if (message.payloadString==="true") {
+			console.log("Goal ON");
+			$("#goal").fadeIn();	
+			x.load();	
+			x.play();	
+		} else {
+			console.log("Goal OFF");
+			$("#goal").fadeOut();	
+			x.pause();	
+		}
+	}
+}
+
+$(document).ready(function() {
+	// Interpretazione messaggi MQTT in arrivo
+	mqtt_mainpage_client = new Paho.MQTT.Client(mqtt_broker, Number(mqtt_port), "/ws",randomString(20));
+	mqtt_mainpage_client.onMessageArrived=onMessageArrived;
+	mqtt_mainpage_client.connect({
+		onSuccess:onConnect
+	});
+
+	// Carica il video di background se specificato sulla url
+	// video=videofile
+	if ($.QueryString["video"]!==undefined) {
+		loadVideo($.QueryString["video"]);
+	}
+});
