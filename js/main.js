@@ -1,7 +1,7 @@
 // Doc API Paho: https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
 // Esempio Montefusco: https://github.com/AcmeSystemsProjects/toa/blob/montefusco/www/js/controllers_st_sd.js
 
-var mqtt_broker="biliardino3.local";
+var mqtt_broker="biliardino.local";
 var mqtt_port=1884;
 var mqtt_mainpage_client;
 var message_line;
