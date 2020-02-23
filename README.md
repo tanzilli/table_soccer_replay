@@ -6,4 +6,10 @@ Sistema di conteggio punti e replay video su biliardino tradizionale
 * Replay automatico del goal da due telecamere
 * Tabellone elettronico e replay video su schermo full HD
 
-Progetto in via di sviluppo 
+Schema a blocchi
+
+![Schema a blocchi](/images/diagramma1.jpg)
+
+## Links
+
+* <https://github.com/tanzilli/raspberrypi_camera_streamer>

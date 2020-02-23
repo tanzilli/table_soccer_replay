@@ -3,6 +3,25 @@ body {
 	background-image: url("../images/soccer_field.jpg"); 
 }
 
+.video_replay {
+	position: absolute;
+	top: 400px;
+	width: 640px;
+	height: 480px;
+	transform: rotate(90deg) scale(1.2);
+	border-width: 4px;
+	border-style: solid;
+}
+
+#video_replay_red {
+	left: 120px;
+	border-color: red;
+}
+
+#video_replay_blue {
+	right: 120px;
+	border-color: blue;
+}
 
 .score_line {
 	position: absolute;
@@ -15,14 +34,14 @@ body {
 	border-color: black;
 }
 
-#blue_score_line {
+#red_score_line {
 	left: 125px;
-	background-color: blue;
+	background-color: red;
 }
 
-#red_score_line {
+#blue_score_line {
 	right: 125px;
-	background-color: red;
+	background-color: blue;
 }
 
 .score {
@@ -39,13 +58,14 @@ body {
 		3px 3px 0 yellow;
 }
 
-#blue_score {
+#red_score {
 	left: 140px;
 }
 
-#red_score {
+#blue_score {
 	right: 140px;
 }
+
 
 #goal {
 	position: absolute;

@@ -17,26 +17,11 @@
 </head>
 
 <body>
-	<!-- Video sullo sfondo -->
-	<video autoplay muted loop id="videoclip" style="position: fixed; right: 0px; bottom: 0px; min-width: 100%; min-height: 100%;">
-	  <source id="mp4video" type="video/mp4">
-	</video>
+	<div class="score_line" id="red_score_line"></div>
+	<div class="score_line" id="blue_score_line"></div>
 
-	<div class="score_line" id="blue_score_line">
-		
-	</div>
-
-	<div class="score_line" id="red_score_line">
-		
-	</div>
-
-	<div class="score" id="blue_score">
-		0
-	</div>
-
-	<div class="score" id="red_score">
-		0
-	</div>
+	<div class="score" id="red_score">0</div>
+	<div class="score" id="blue_score">0</div>
 
 	<div id="goal">
 		<img src="images/goal.gif" width="500px">
@@ -44,6 +29,10 @@
 			<source src="audio/goal.mp3" type="audio/mpeg">
 		</audio>
 	</div>
+
+	<iframe class="video_replay" id="video_replay_red" src="http://redcam.local:8001/stream.mjpg"></iframe>
+	<iframe class="video_replay" id="video_replay_blue" src="http://bluecam.local:8001/stream.mjpg"></iframe>
+
 
 </body>
 </html> 
