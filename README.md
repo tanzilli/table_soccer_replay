@@ -27,7 +27,7 @@ Le Raspberry usate sono tre:
 	* Accesso ssh: ssh pi@biliardinocam.local
 	* Node-Red: [http://biliardino.local:1880](http://biliardino.local:1880)
 	* Codiad: [http://biliardino.local](http://biliardino.local)
-	* Flow Node-Red: [flows/biliardino](flows/biliardino)
+	* Flow Node-Red: [flows/biliardino.json](flows/biliardino.json)
 
 
 ## Links
