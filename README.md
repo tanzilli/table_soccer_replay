@@ -56,17 +56,19 @@ Quindi preparare la directory dove Codiad salverà i file:
 	
 	sudo service apache2 restart
 
-## Come installare Codiad
+## Come installare Node-Red
 
-Type at command line prompt:
+La logica di gestione dell gioco e alcune funzioni di sistema sono gestire in Node-Red
+
+Per installarlo al prompt digitare:
 
 	bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 
-Enable the systemd service by typing:
+Per abilitare Node-Red allo startup:
 
 	sudo systemctl enable nodered.service
 
-Then start it:
+Per lanciarlo subito:
 
 	sudo systemctl start nodered.service
 
