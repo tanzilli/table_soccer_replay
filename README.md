@@ -10,26 +10,33 @@ Schema a blocchi
 
 ![Schema a blocchi](/images/diagramma.jpg)
 
-Le Raspberry usate sono tre:
+Le Raspberry usate sono quattro:
 
-* Gestione telecamera giocatori rossi
+* Raspberry Pi 3 B+ Lettura barriere IR, webserver, broker MQTT
+	* Accesso ssh: ssh pi@biliardino.local
+	* Node-Red: [http://biliardino.local:1880](http://biliardino.local:1880)
+	* Codiad: [http://biliardino.local](http://biliardino.local)
+	* Flow Node-Red: [flows/biliardino.json](flows/biliardino.json)
+
+* Raspberry Pi 3 B+ Telecamera giocatori rossi
 	* Accesso ssh: ssh pi@redcam.local
 	* Node-red: [http://redcam.local:1880](http://redcam.local:1880)
 	* Streaming video: [http://redcam.local:8001/stream.mjpg](http://redcam.local:8001/stream.mjpg)
 
-* Gestione telecamera giocatori blu
+* Raspberry Pi 3 B+ Telecamera giocatori blu
 	* Accesso ssh: ssh pi@bluecam.local
 	* Node-Red: [http://bluecam.local:1880](http://bluecam.local:1880)
 	* Streaming video: [http://bluecam.local:8001/stream.mjpg](http://bluecam.local:8001/stream.mjpg)
 	* Programma stream.py: [picamera/stream.py](picamera/stream.py)
 
-* Lettura barriere IR, webserver, broker MQTT
-	* Accesso ssh: ssh pi@biliardinocam.local
-	* Node-Red: [http://biliardino.local:1880](http://biliardino.local:1880)
-	* Codiad: [http://biliardino.local](http://biliardino.local)
-	* Flow Node-Red: [flows/biliardino.json](flows/biliardino.json)
 
-## Come installare Codiad
+* Raspberry Pi 4 Tabellone elettronico
+	* Accesso ssh: ssh pi@tabellone.local
+	* Node-Red: [http://tabellone.local:1880](http://tabellone.local:1880)
+	* Flow Node-Red: [flows/tabellone.json](flows/tabellone.json)
+
+
+## Installazione Codiad su biliardino
 
 Per facilitare l'editing delle pagine html e dei programmi in Pyhton e Javascript ho installato l'editor on-line Codiad 
 su ogni Raspberry
@@ -50,7 +57,7 @@ Quindi preparare la directory dove Codiad salverà i file:
 	
 	sudo service apache2 restart
 
-## Come installare Node-Red
+## Installazione Node-Red su biliardino, redcam, bluecam e tabellone
 
 La logica di gestione dell gioco e alcune funzioni di sistema sono gestire in Node-Red
 
@@ -66,7 +73,7 @@ Per lanciarlo subito:
 
 	sudo systemctl start nodered.service
 
-## Chromium
+## Installazione Chromium su tabellone.local
 
 Chromium viene utilizzato per realizzare il tabellone elettronico:
 
@@ -103,7 +110,7 @@ Per lanciarlo nella sessione corrente digitare:
 	
 	sudo systemctl start chromium.service 
 
-## Software sulle telecamere
+## Installazione software su redcam e bluecam.local
 
 Installare paho-mqtt
 	
@@ -174,7 +181,7 @@ Creare un link simbolico a questa directory nella documentroot di apache2:
 
 	sudo ln -s /home/pi pi
 	
-## Disabilitare la WiFi
+## Disabilitare la WiFi su tutte le schede
 
 	sudo nano /boot/config.txt
 	
