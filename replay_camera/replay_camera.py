@@ -1,11 +1,10 @@
-#!/usr/bin/env python3
-
 import io
 import os 
 import random
 import picamera
 import paho.mqtt.client as mqtt
 import time
+from datetime import datetime
 
 goal=False
 
@@ -34,8 +33,8 @@ client.on_connect = on_connect
 client.on_message = on_message
 client.loop_start()
 
-camera = picamera.PiCamera(resolution=(640,480), framerate=30)
-stream = picamera.PiCameraCircularIO(camera, seconds=20)
+camera = picamera.PiCamera(resolution=(640,480), framerate=120)
+stream = picamera.PiCameraCircularIO(camera, seconds=5)
 camera.start_recording(stream, format='h264')
 
 try:
@@ -45,11 +44,20 @@ try:
 			print("Still recording for 1 sec")
 			camera.wait_recording(1)
 			print("Copy to file")
-			stream.copy_to('replay_redcam.h264')
-			print("Convert to mp4")
-			os.system("ffmpeg -v 1 -f h264 -i replay_redcam.h264 -c:v copy -y replay_redcam.mp4")
+			os.system("rm video/*.h264")
+			os.system("rm video/*.mp4")
+			
+			now = datetime.now()
+			basename=now.strftime("%m%d%Y%H%M%S")
+			
+			stream.copy_to("video/" + basename + ".h264")
+			stream.clear()
+			print("Convert " + basename + ".h264 to " + basename + ".mp4")
+			os.system("ffmpeg -v 1 -f h264 -i video/" + basename + ".h264 -c:v copy -y video/" + basename + ".mp4")
 			time.sleep(1);
 			print("Send event MQTT")
-			client.publish("biliardino/redcam/end","ready");
+			client.publish("biliardino/redcam/end",basename+".mp4");
+
 finally:
-    camera.stop_recording()			
+	print("finally")
+	camera.stop_recording()			

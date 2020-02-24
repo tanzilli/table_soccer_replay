@@ -62,7 +62,7 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
 
 def run(port = 8001):
     global output, server, stream_status
-    with picamera.PiCamera(resolution='640x480', framerate=120) as camera:
+    with picamera.PiCamera(resolution='640x480', framerate=30) as camera:
         output = StreamingOutput()
         #Camera rotation (in degrees)
         camera.rotation = 0

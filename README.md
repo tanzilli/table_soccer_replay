@@ -115,6 +115,9 @@ Installare paho-mqtt
 	mkdir replay_cam
 	cd replay_cam
 	wget https://raw.githubusercontent.com/tanzilli/table_soccer_replay/master/replay_camera/replay_camera.py
+	wget https://raw.githubusercontent.com/tanzilli/table_soccer_replay/master/replay_camera/stream.py
+
+Cambiare nel file red in blue o viceversa a seconda della camera
 
 Create il file di lancio allo startup con nano:
 
@@ -128,6 +131,25 @@ con il seguente contenuto:
 	
 	[Service]
 	ExecStart=python3 replay_camera.py
+	Restart=on-abort
+	User=pi
+	WorkingDirectory=/home/pi/replay_camera
+	
+	[Install]
+	WantedBy=multi-user.target
+
+Create il file di lancio allo startup con nano:
+
+	sudo nano /lib/systemd/system/stream.service
+
+con il seguente contenuto:
+
+	[Unit]
+	Description=Stream camera
+	After=systemd-user-sessions.service
+	
+	[Service]
+	ExecStart=python3 stream.py
 	Restart=on-abort
 	User=pi
 	WorkingDirectory=/home/pi/replay_camera
@@ -151,6 +173,17 @@ Aggiungere la linea:
 Creare un link simbolico a questa directory nella documentroot di apache2:
 
 	sudo ln -s /home/pi pi
+	
+## Disabilitare la WiFi
+
+	sudo nano /boot/config.txt
+	
+Aggiungere le linee:
+
+	enable_uart=1
+	dtoverlay=disable-wifi
+	dtoverlay=disable-bt
+	
 
 ### Note
 
