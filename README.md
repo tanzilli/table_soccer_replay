@@ -107,12 +107,14 @@ Per lanciarlo nella sessione corrente digitare:
 
 Installare paho-mqtt
 	
-	sudo apt-get install python3-pip
+	sudo apt update
+	sudo apt-get -y install python3-pip
 	sudo pip3 install paho-mqtt
-
-Salvare in __/home/pi__ il programma Python3
-
-	* [picamera/replay_camera.py]
+	
+	cd
+	mkdir replay_cam
+	cd replay_cam
+	wget https://raw.githubusercontent.com/tanzilli/table_soccer_replay/master/replay_camera/replay_camera.py
 
 Create il file di lancio allo startup con nano:
 
@@ -128,7 +130,7 @@ con il seguente contenuto:
 	ExecStart=python3 replay_camera.py
 	Restart=on-abort
 	User=pi
-	WorkingDirectory=/home/pi
+	WorkingDirectory=/home/pi/replay_camera
 	
 	[Install]
 	WantedBy=multi-user.target
@@ -137,6 +139,18 @@ Abilitare Chromium per essere lanciato automaticamente allo startup:
 
 	sudo systemctl daemon-reload
 	sudo systemctl enable replay_camera.service 	
+
+Creare una directory di lavoro su RAM dove memorizzare i video:
+
+	sudo nano /etc/fstab
+
+Aggiungere la linea:
+
+	tmpfs   /home/pi/replay_camera/video   tmpfs   defaults,nosuid,auto,uid=1000,size=200m  0  0
+
+Creare un link simbolico a questa directory nella documentroot di apache2:
+
+	sudo ln -s /home/pi pi
 
 ### Note
 

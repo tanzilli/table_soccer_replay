@@ -53,21 +53,38 @@ function onConnect() {
 }	
 
 function onMessageArrived(message) {
+	// Punteggio blu
 	console.log(message.destinationName + " " + message.payloadString);
 	if (message.destinationName.includes("blue_score")) {
 		$("#blue_score").text(message.payloadString);
 	}
+
+	// Punteggio rossi
 	if (message.destinationName.includes("red_score")) {
 		$("#red_score").text(message.payloadString);
 	}
 
+	// Fine partita
 	if (message.destinationName.includes("redcam/end")) {
 		console.log("Load and play replay from red cam");
+		console.log(message.payloadString);
 		var video = document.getElementById('video_replay_red');
-		video.src="http://redcam.local/stream/replay_redcam.mp4?a=" + (Math.random()*100);
+		video.src="http://redcam.local/pi/replay_camera/video/" + message.payloadString;
 		video.load();
 		video.play();	
 	}
+
+	// Show/Hide tabellone
+	if (message.destinationName.includes("tabellone")) {
+		if (message.payloadString==="show") {
+			$("#tabellone").fadeIn();
+			$("#setup").fadeOut();
+		} else {
+			$("#tabellone").fadeOut();
+			$("#setup").fadeIn();
+		}
+	}
+
 
 	if (message.destinationName.includes("goal")) {
 		var x = document.getElementById("audio_goal");
@@ -75,7 +92,7 @@ function onMessageArrived(message) {
 			console.log("Goal ON");
 			$("#goal").fadeIn();	
 			x.load();	
-			x.play();	
+			//x.play();	
 		} else {
 			console.log("Goal OFF");
 			$("#goal").fadeOut();	
