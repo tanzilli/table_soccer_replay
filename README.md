@@ -103,12 +103,12 @@ Per lanciarlo nella sessione corrente digitare:
 	
 	sudo systemctl start chromium.service 
 
-## Software sulle telecacmere
+## Software sulle telecamere
 
 Installare paho-mqtt
 	
 	sudo apt update
-	sudo apt-get -y install python3-pip
+	sudo apt-get -y install ffmpeg apache2 python3-pip
 	sudo pip3 install paho-mqtt
 	
 	cd
