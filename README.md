@@ -29,12 +29,6 @@ Le Raspberry usate sono tre:
 	* Codiad: [http://biliardino.local](http://biliardino.local)
 	* Flow Node-Red: [flows/biliardino.json](flows/biliardino.json)
 
-## Link utili
-
-* [Recording to a circular stream](https://picamera.readthedocs.io/en/release-1.13/recipes1.html#recording-to-a-circular-stream)
-* [Picamera Basic Recipes](https://picamera.readthedocs.io/en/release-1.13/recipes1.html)
-* <https://github.com/tanzilli/raspberrypi_camera_streamer>
-
 ## Come installare Codiad
 
 Per facilitare l'editing delle pagine html e dei programmi in Pyhton e Javascript ho installato l'editor on-line Codiad 
@@ -74,7 +68,18 @@ Per lanciarlo subito:
 
 ## Chromium
 
-Contenuto del file __/lib/systemd/system/chromium.service__
+Chromium viene utilizzato per realizzare il tabellone elettronico:
+
+Per installarlo sulla Raspberry usare i seguenti comandi:
+
+	sudo apt update
+	sudo apt install -y chromium-browser xorg
+
+Creare il file per systemd  __/lib/systemd/system/chromium.service__ con l'editor nano:
+
+	sudo nano /lib/systemd/system/chromium.service
+	
+e inserire il seguente contenuto:	
 
 	[Unit]
 	Description=Launch Chromium
@@ -89,21 +94,61 @@ Contenuto del file __/lib/systemd/system/chromium.service__
 	[Install]
 	WantedBy=multi-user.target
 
-Abilitare chromium
+Abilitare Chromium per essere lanciato automaticamente allo startup:
 
 	sudo systemctl daemon-reload
 	sudo systemctl enable chromium.service 
-	sudo systemctl start chromium.service 
+
+Per lanciarlo nella sessione corrente digitare:	
 	
-## Conversione h264 in mp4
+	sudo systemctl start chromium.service 
+
+## Software sulle telecacmere
+
+Installare paho-mqtt
+	
+	sudo apt-get install python3-pip
+	sudo pip3 install paho-mqtt
+
+Salvare in __/home/pi__ il programma Python3
+
+	* [picamera/replay_camera.py]
+
+Create il file di lancio allo startup con nano:
+
+	sudo nano /lib/systemd/system/replay_camera.service
+
+con il seguente contenuto:
+
+	[Unit]
+	Description=Replay camera
+	After=systemd-user-sessions.service
+	
+	[Service]
+	ExecStart=python3 replay_camera.py
+	Restart=on-abort
+	User=pi
+	WorkingDirectory=/home/pi
+	
+	[Install]
+	WantedBy=multi-user.target
+
+Abilitare Chromium per essere lanciato automaticamente allo startup:
+
+	sudo systemctl daemon-reload
+	sudo systemctl enable replay_camera.service 	
+
+### Note
+
+Conversione h264 in mp4
 
 	ffmpeg -f h264 -i replay_redcam.h264 -c:v copy -y replay_redcam.mp4
 
-## Installare Paho-mqtt per Python3
+## Link utili
 
-	sudo apt-get install python3-pip
-	sudo pip3 install paho-mqtt
-	
+* [Recording to a circular stream](https://picamera.readthedocs.io/en/release-1.13/recipes1.html#recording-to-a-circular-stream)
+* [Picamera Basic Recipes](https://picamera.readthedocs.io/en/release-1.13/recipes1.html)
+* <https://github.com/tanzilli/raspberrypi_camera_streamer>
 
 	
 
