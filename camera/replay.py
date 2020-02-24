@@ -60,7 +60,7 @@ try:
 			os.system("ffmpeg -v 1 -f h264 -i video/" + basename + ".h264 -c:v copy -y video/" + basename + ".mp4")
 			time.sleep(1);
 			print("Send event MQTT")
-			client.publish("biliardino/" + socket.gethostname() + "/end",basename+".mp4");
+			client.publish("biliardino/" + socket.gethostname() + "/ready",basename+".mp4");
 
 finally:
 	print("finally")

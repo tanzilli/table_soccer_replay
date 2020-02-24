@@ -65,21 +65,21 @@ function onMessageArrived(message) {
 	}
 
 	// Fine ripresa redcam
-	if (message.destinationName.includes("redcam/end")) {
+	if (message.destinationName.includes("redcam/ready")) {
 		console.log("Load and play replay from red cam");
 		console.log(message.payloadString);
-		var video = document.getElementById('video_replay_red');
-		video.src="http://redcam.local/pi/replay_camera/video/" + message.payloadString;
+		video = document.getElementById('video_replay_red');
+		video.src="http://redcam.local/pi/camera/video/" + message.payloadString;
 		video.load();
 		video.play();	
 	}
 
 	// Fine ripresa bluecam
-	if (message.destinationName.includes("bluecam/end")) {
+	if (message.destinationName.includes("bluecam/ready")) {
 		console.log("Load and play replay from blue cam");
 		console.log(message.payloadString);
-		var video = document.getElementById('video_replay_blue');
-		video.src="http://bluecam.local/pi/replay_camera/video/" + message.payloadString;
+		video = document.getElementById('video_replay_blue');
+		video.src="http://bluecam.local/pi/camera/video/" + message.payloadString;
 		video.load();
 		video.play();	
 	}
