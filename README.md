@@ -121,14 +121,14 @@ Installare paho-mqtt
 	cd
 	mkdir replay_cam
 	cd replay_cam
-	wget https://raw.githubusercontent.com/tanzilli/table_soccer_replay/master/replay_camera/replay_camera.py
-	wget https://raw.githubusercontent.com/tanzilli/table_soccer_replay/master/replay_camera/stream.py
+	wget https://raw.githubusercontent.com/tanzilli/table_soccer_replay/master/camera/replay.py
+	wget https://raw.githubusercontent.com/tanzilli/table_soccer_replay/master/camera/stream.py
 
 Cambiare nel file red in blue o viceversa a seconda della camera
 
 Create il file di lancio allo startup con nano:
 
-	sudo nano /lib/systemd/system/replay_camera.service
+	sudo nano /lib/systemd/system/replay.service
 
 con il seguente contenuto:
 
@@ -137,10 +137,10 @@ con il seguente contenuto:
 	After=systemd-user-sessions.service
 	
 	[Service]
-	ExecStart=python3 replay_camera.py
+	ExecStart=python3 replay.py
 	Restart=on-abort
 	User=pi
-	WorkingDirectory=/home/pi/replay_camera
+	WorkingDirectory=/home/pi/camera
 	
 	[Install]
 	WantedBy=multi-user.target
@@ -159,7 +159,7 @@ con il seguente contenuto:
 	ExecStart=python3 stream.py
 	Restart=on-abort
 	User=pi
-	WorkingDirectory=/home/pi/replay_camera
+	WorkingDirectory=/home/pi/camera
 	
 	[Install]
 	WantedBy=multi-user.target
@@ -167,7 +167,7 @@ con il seguente contenuto:
 Abilitare Chromium per essere lanciato automaticamente allo startup:
 
 	sudo systemctl daemon-reload
-	sudo systemctl enable replay_camera.service 	
+	sudo systemctl enable camera.service 	
 
 Creare una directory di lavoro su RAM dove memorizzare i video:
 
@@ -175,7 +175,7 @@ Creare una directory di lavoro su RAM dove memorizzare i video:
 
 Aggiungere la linea:
 
-	tmpfs   /home/pi/replay_camera/video   tmpfs   defaults,nosuid,auto,uid=1000,size=200m  0  0
+	tmpfs   /home/pi/camera/video   tmpfs   defaults,nosuid,auto,uid=1000,size=200m  0  0
 
 Creare un link simbolico a questa directory nella documentroot di apache2:
 
