@@ -8,7 +8,7 @@ Sistema di conteggio punti e replay video su biliardino tradizionale
 
 Schema a blocchi
 
-![Schema a blocchi](/images/diagramma1.jpg)
+![Schema a blocchi](/images/diagramma.jpg)
 
 Le Raspberry usate sono tre:
 
