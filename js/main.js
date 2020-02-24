@@ -60,6 +60,15 @@ function onMessageArrived(message) {
 	if (message.destinationName.includes("red_score")) {
 		$("#red_score").text(message.payloadString);
 	}
+
+	if (message.destinationName.includes("redcam/end")) {
+		console.log("Load and play replay from red cam");
+		var video = document.getElementById('video_replay_red');
+		video.src="http://redcam.local/stream/replay_redcam.mp4?a=" + (Math.random()*100);
+		video.load();
+		video.play();	
+	}
+
 	if (message.destinationName.includes("goal")) {
 		var x = document.getElementById("audio_goal");
 		if (message.payloadString==="true") {
@@ -83,9 +92,4 @@ $(document).ready(function() {
 		onSuccess:onConnect
 	});
 
-	// Carica il video di background se specificato sulla url
-	// video=videofile
-	if ($.QueryString["video"]!==undefined) {
-		loadVideo($.QueryString["video"]);
-	}
 });

@@ -3,17 +3,10 @@
 <head>
 	<title>Biliardino</title>
     <meta charset="utf-8">
-
 	<script src="js/paho-mqtt-min.js"     type="text/javascript"></script>
 	<script src="js/jquery-3.3.1.min.js"  type="text/javascript"></script>
 	<script src="js/main.js"              type="text/javascript"></script>	
-	
 	<link href="css/main.css" 		      type="text/css" rel="stylesheet">
-
-	<script>
-		$(document).ready(function() {
-		});	
-	</script>
 </head>
 
 <body>
@@ -24,8 +17,13 @@
 	<div class="score" id="blue_score">0</div>
 
 
-	<iframe class="video_replay" id="video_replay_red" src="http://redcam.local:8001/stream.mjpg"></iframe>
+	<!--<iframe class="video_replay" id="video_replay_red" src="http://redcam.local:8001/stream.mjpg"></iframe>-->
 	<iframe class="video_replay" id="video_replay_blue" src="http://bluecam.local:8001/stream.mjpg"></iframe>
+	
+	
+	<video class="video_replay" id="video_replay_red" controls autoplay loop>
+	  <source type="video/mp4"/>
+	</video>	
 
 	<div id="goal">
 		<img src="images/goal.gif" width="600px">

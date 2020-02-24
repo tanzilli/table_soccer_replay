@@ -9,18 +9,18 @@ body {
 	width: 640px;
 	height: 480px;
 	transform: rotate(90deg) scale(1.2);
-	border-width: 4px;
-	border-style: solid;
+	/* border-width: 4px;
+	border-style: solid; */
 }
 
 #video_replay_red {
 	left: 120px;
-	border-color: red;
+	/* border-color: red; */
 }
 
 #video_replay_blue {
 	right: 120px;
-	border-color: blue;
+	/* border-color: blue; */
 }
 
 .score_line {
