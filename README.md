@@ -35,6 +35,11 @@ Le Raspberry usate sono quattro:
 	* Node-Red: [http://tabellone.local:1880](http://tabellone.local:1880)
 	* Flow Node-Red: [flows/tabellone.json](flows/tabellone.json)
 
+## Datasheet
+
+* [LTE-5208A - Diodi emettitore IR](datasheet/LTE-5208A.pdf)
+* [TSOP-32338V - Ricevitore IR a 38KHz](datasheet/TSOP-32338V.pdf)
+
 
 ## Installazione Codiad su biliardino
 
