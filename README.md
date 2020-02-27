@@ -35,6 +35,16 @@ Le Raspberry usate sono quattro:
 	* Node-Red: [http://tabellone.local:1880](http://tabellone.local:1880)
 	* Flow Node-Red: [flows/tabellone.json](flows/tabellone.json)
 
+## Uso dei pin sulla Raspberry biliardino
+
+	| GPIO | Segnale | Descrizione    |
+	|------|---------|----------------|
+	| 18   | Inp     | Reset partita  |
+	| 21   | Inp     | Scambio schermi|
+	| 24   | Inp     | IR porta rossi |
+	| 12   | Inp     | IR porta blue  |
+	| 4    | Out     | Led IR         |
+
 ## Datasheet
 
 * [LTE-5208A - Diodi emettitore IR](datasheet/LTE-5208A.pdf)

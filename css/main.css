@@ -1,70 +1,14 @@
 body { 
 	background-color: black;
-	background-image: url("../images/tabellone.jpg"); 
+	background-image: url("../images/tabellone.jpg");
 }
 
-#tabellone {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 1920px;
-	height: 1080px;
-}
-
-#setup {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 1920px;
-	height: 1080px;
-	display: none;
-}
-
-.video_replay {
-	position: absolute;
-	top: 400px;
-	width: 640px;
-	height: 480px;
-	transform: rotate(90deg) scale(1.2);
-	/* border-width: 4px;
-	border-style: solid; */
-}
-
-#video_replay_red {
-	left: 120px;
-	/* border-color: red; */
-}
-
-#video_replay_blue {
-	right: 120px;
-	/* border-color: blue; */
-}
-
-.video_stream {
-	position: absolute;
-	top: 400px;
-	width: 640px;
-	height: 480px;
-	transform: rotate(90deg) scale(1.2);
-	/* border-width: 4px;
-	border-style: solid; */
-}
-
-#video_stream_red {
-	left: 120px;
-	/* border-color: red; */
-}
-
-#video_stream_blue {
-	right: 120px;
-	/* border-color: blue; */
-}
-
+/* Riquadri punteggi */
 
 .score_line {
 	position: absolute;
-	top: 35px;
-	width: 810px;
+	top: 10px;
+	width: 410px;
 	height: 180px;
 	opacity: 0.8;
 	border-style: solid;
@@ -73,13 +17,56 @@ body {
 }
 
 #red_score_line {
-	left: 125px;
+	left: 10px;
 	background-color: red;
 }
 
 #blue_score_line {
-	right: 125px;
+	right: 10px;
 	background-color: blue;
+}
+
+.video_replay {
+	position: absolute;
+	top: 400px;
+	width: 640px;
+	height: 480px;
+	transform: scale(1.4);
+	
+	/* transform: rotate(90deg) scale(1.2); */
+	/* border-width: 4px;
+	border-style: solid; */
+}
+
+#video_replay_red {
+	left: 170px;
+	/* border-color: red; */
+}
+
+#video_replay_blue {
+	right: 170px;
+	/* border-color: blue; */
+}
+
+.video_stream {
+	position: absolute;
+	top: 400px;
+	width: 640px;
+	height: 480px;
+	transform: scale(1.4);
+	/*transform: rotate(90deg) scale(1.2);*/
+	/* border-width: 4px;
+	border-style: solid; */
+}
+
+#video_stream_red {
+	left: 170px;
+	/* border-color: red; */
+}
+
+#video_stream_blue {
+	right: 170px;
+	/* border-color: blue; */
 }
 
 .score {
@@ -107,7 +94,7 @@ body {
 
 #goal {
 	position: absolute;
-	top: 380px;
+	top: 10px;
 	left: 670px;
 	display: none;
 }
