@@ -44,6 +44,21 @@ Le Raspberry usate sono quattro:
 	| 24   | Inp     | IR porta rossi |
 	| 12   | Inp     | IR porta blue  |
 	| 4    | Out     | Led IR         |
+	| 17   | Inp     | IR maniglia    |
+	
+## Pinout Raspberry Biliardino
+
+	   LED 1                                     I LED
+	   GND 2                                     J GND
+	   RED 3                                     K BLUE
+	   3V3 4                                     L 3V3
+	   GND 5                                     M GND
+	       6                                     N
+	       7                                     O
+	       8                                     P
+	         A    B    C    D    E    F   G   H 
+		 LED  SW   3V3  GND
+		 
 
 ## Datasheet
 
