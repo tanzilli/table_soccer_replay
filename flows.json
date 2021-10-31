@@ -640,8 +640,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 420,
-        "y": 240,
+        "x": 410,
+        "y": 200,
         "wires": [
             [],
             [],

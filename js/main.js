@@ -56,6 +56,20 @@ function mqtt_client_onMessageArrived(message) {
 		} 
 	}
 
+	// Moviola redreplay
+	if (message.destinationName.includes("redreplay/input")) {
+		
+		if (message.payloadString=="left") {
+			video = document.getElementById('video_replay_red');
+			video.currentTime-=0.1;
+		} 
+
+		if (message.payloadString=="right") {
+			video = document.getElementById('video_replay_red');
+			video.currentTime+=0.1;
+		} 
+	}
+
 	// Fine ripresa Raspicam bluereplay
 	if (message.destinationName.includes("bluereplay/ready")) {
 		video = document.getElementById('video_replay_blue');
