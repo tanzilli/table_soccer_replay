@@ -1,0 +1,51 @@
+body { 
+	background-color: darkgreen;
+}
+
+#score_flex {
+	width: 100%;
+	display: flex;
+}
+
+#score_flex div {
+	flex: 1;
+	margin: 15px;
+	text-align: center;
+}
+
+#video_flex {
+	width: 100%;
+	display: flex;
+}
+
+#video_flex div {
+	flex: 1;
+	margin: 15px;
+	text-align: center;
+}
+
+#video_replay_blue {
+	width: 95%;
+	border: 2px solid blue;
+}
+
+#video_replay_red {
+	width: 95%;
+	border: 2px solid red; 
+}
+
+#topic_box {
+	color:yellow;
+	font-size: 20px;
+	position: absolute;
+	left: 10px;
+	bottom: 30px;
+}
+
+#message_box {
+	color:white;
+	font-size: 20px;
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+}

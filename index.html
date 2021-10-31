@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<title>Table Soccer Scores</title>
+    <meta charset="utf-8">
+	<script src="js/paho-mqtt-min.js"     type="text/javascript"></script>
+	<script src="js/jquery-3.3.1.min.js"  type="text/javascript"></script>
+	<script src="js/main.js"              type="text/javascript"></script>	
+
+	<script type="text/javascript" src="js/segment-display.js"></script>
+	<link  href="css/main.css" 		      type="text/css" rel="stylesheet">
+	
+	<script type="text/javascript">
+		var blue_score = new SegmentDisplay("blue_score");
+		blue_score.pattern         = "##";
+		blue_score.displayAngle    = 15;
+		blue_score.digitHeight     = 30;
+		blue_score.digitWidth      = 18;
+		blue_score.digitDistance   = 2.5;
+		blue_score.segmentWidth    = 4;
+		blue_score.segmentDistance = 0.3;
+		blue_score.segmentCount    = 7;
+		blue_score.cornerType      = 3;
+		blue_score.colorOn         = "#005dff";
+		blue_score.colorOff        = "transparent";
+		blue_score.draw();
+
+		var red_score = new SegmentDisplay("red_score");
+		red_score.pattern         = "##";
+		red_score.displayAngle    = 15;
+		red_score.digitHeight     = 30;
+		red_score.digitWidth      = 18;
+		red_score.digitDistance   = 3;
+		red_score.segmentWidth    = 4;
+		red_score.segmentDistance = 0.3;
+		red_score.segmentCount    = 7;
+		red_score.cornerType      = 3;
+		red_score.colorOn         = "#ff0000";
+		red_score.colorOff        = "transparent";
+		red_score.draw();
+</script>
+</head>
+
+<body>
+	<div id="score_flex">
+		<div>
+			<canvas id="blue_score"></canvas>
+		</div>
+		<div>
+			<canvas id="red_score"></canvas>
+		</div>
+	</div>	
+
+	<div id="video_flex">
+		<div>
+			<video id="video_replay_blue" autoplay="true" controls>
+				<source type="video/mp4"/>
+			</video>	
+		</div>
+		<div>
+			<video id="video_replay_red" autoplay="true" controls>
+				<source type="video/mp4"/>
+			</video>	
+		</div>
+	</div>
+ 
+	<div id="topic_box">Topic box</div>
+	<div id="message_box">Message box</div>
+</body>
+</html> 
