@@ -1,0 +1,651 @@
+[
+    {
+        "id": "5369ffac2098992c",
+        "type": "tab",
+        "label": "Local",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "323408c41fa23bbe",
+        "type": "tab",
+        "label": "Public",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "417dc7d383c3953b",
+        "type": "tab",
+        "label": "System",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a8f2ae93cff3f85f",
+        "type": "tab",
+        "label": "System",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a33753f5afa328e7",
+        "type": "mqtt-broker",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6884289e155fdc13",
+        "type": "mqtt-broker",
+        "name": "bscreen",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "0256646619cd862e",
+        "type": "inject",
+        "z": "5369ffac2098992c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sudo reboot",
+        "payloadType": "str",
+        "x": 1010,
+        "y": 60,
+        "wires": [
+            [
+                "9595db70d5e34387"
+            ]
+        ]
+    },
+    {
+        "id": "7e9265e78da058fe",
+        "type": "inject",
+        "z": "5369ffac2098992c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sudo halt",
+        "payloadType": "str",
+        "x": 1000,
+        "y": 120,
+        "wires": [
+            [
+                "9595db70d5e34387"
+            ]
+        ]
+    },
+    {
+        "id": "9595db70d5e34387",
+        "type": "exec",
+        "z": "5369ffac2098992c",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1300,
+        "y": 140,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8f504ba60218db0e",
+        "type": "mqtt in",
+        "z": "5369ffac2098992c",
+        "name": "",
+        "topic": "table_soccer/bluereplay/input",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a33753f5afa328e7",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "21a86f90b8055785",
+                "d0fc674e1e333fde",
+                "1dac3cf99d548c0a"
+            ]
+        ]
+    },
+    {
+        "id": "21a86f90b8055785",
+        "type": "debug",
+        "z": "5369ffac2098992c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "066407106daa64e1",
+        "type": "mqtt out",
+        "z": "5369ffac2098992c",
+        "name": "",
+        "topic": "table_soccer/blue/score/cmd",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "a33753f5afa328e7",
+        "x": 640,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d0fc674e1e333fde",
+        "type": "function",
+        "z": "5369ffac2098992c",
+        "name": "",
+        "func": "if (msg.payload===\"3\") {\n    msg.payload=\"inc\";\n    return msg;\n}    \nif (msg.payload===\"2\") {\n    msg.payload=\"dec\";\n    return msg;\n}    \n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "066407106daa64e1"
+            ]
+        ]
+    },
+    {
+        "id": "47f21502a88fc3c4",
+        "type": "mqtt out",
+        "z": "5369ffac2098992c",
+        "name": "",
+        "topic": "table_soccer/bluereplay/cmd",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "a33753f5afa328e7",
+        "x": 640,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "1dac3cf99d548c0a",
+        "type": "function",
+        "z": "5369ffac2098992c",
+        "name": "",
+        "func": "if (msg.payload===\"0\") {\n    msg.payload=\"replay\";\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 440,
+        "wires": [
+            [
+                "47f21502a88fc3c4"
+            ]
+        ]
+    },
+    {
+        "id": "c028691cc433493f",
+        "type": "function",
+        "z": "323408c41fa23bbe",
+        "name": "Blue Score",
+        "func": "score=global.get(\"bluescore\");\n\nif (msg.payload===\"reset\") {\n    score=0;\n}\nif (msg.payload===\"inc\") {\n    score=score+=1;\n}\nif (msg.payload===\"dec\") {\n    if (score>0) {\n        score=score-=1;\n    }    \n}\n\nif (msg.payload===\"get\") {\n}\n\nglobal.set(\"bluescore\",score);\nnode.status({fill:\"blue\",shape:\"dot\",text:score});\nmsg.payload=score\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"bluescore\",0);\nnode.status({fill:\"blue\",shape:\"dot\",text:0});\n",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 80,
+        "wires": [
+            [
+                "f27115a384f33f31"
+            ]
+        ]
+    },
+    {
+        "id": "c2f17657313eab24",
+        "type": "function",
+        "z": "323408c41fa23bbe",
+        "name": "Red Score",
+        "func": "score=global.get(\"redscore\");\n\nif (msg.payload===\"reset\") {\n    score=0;\n}\nif (msg.payload===\"inc\") {\n    score=score+=1;\n}\nif (msg.payload===\"dec\") {\n    if (score>0) {\n        score=score-=1;\n    }    \n}\nif (msg.payload===\"get\") {\n}\n\nglobal.set(\"redscore\",score);\nnode.status({fill:\"red\",shape:\"dot\",text:score});\nmsg.payload=score\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nglobal.set(\"redscore\",0);\nnode.status({fill:\"red\",shape:\"dot\",text:0});\n",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [
+                "7a96e45b37edc7cd"
+            ]
+        ]
+    },
+    {
+        "id": "944419f5538f12a9",
+        "type": "mqtt in",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "topic": "table_soccer/blue/score/cmd",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6884289e155fdc13",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 80,
+        "wires": [
+            [
+                "c028691cc433493f"
+            ]
+        ]
+    },
+    {
+        "id": "28365eb19fb536e2",
+        "type": "mqtt out",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "topic": "table_soccer/blue/score/cmd",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6884289e155fdc13",
+        "x": 1160,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e9544950500935a6",
+        "type": "inject",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "reset",
+        "payloadType": "str",
+        "x": 930,
+        "y": 120,
+        "wires": [
+            [
+                "28365eb19fb536e2",
+                "fbe3edc734eb2c07"
+            ]
+        ]
+    },
+    {
+        "id": "0e84d2985695db1d",
+        "type": "inject",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "inc",
+        "payloadType": "str",
+        "x": 930,
+        "y": 40,
+        "wires": [
+            [
+                "28365eb19fb536e2"
+            ]
+        ]
+    },
+    {
+        "id": "4059912a6de4de98",
+        "type": "inject",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "dec",
+        "payloadType": "str",
+        "x": 930,
+        "y": 80,
+        "wires": [
+            [
+                "28365eb19fb536e2"
+            ]
+        ]
+    },
+    {
+        "id": "fbe3edc734eb2c07",
+        "type": "mqtt out",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "topic": "table_soccer/red/score/cmd",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6884289e155fdc13",
+        "x": 1160,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cf53961b434da9d8",
+        "type": "inject",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "inc",
+        "payloadType": "str",
+        "x": 930,
+        "y": 160,
+        "wires": [
+            [
+                "fbe3edc734eb2c07"
+            ]
+        ]
+    },
+    {
+        "id": "0f8b95b71a4eeb24",
+        "type": "inject",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "dec",
+        "payloadType": "str",
+        "x": 930,
+        "y": 200,
+        "wires": [
+            [
+                "fbe3edc734eb2c07"
+            ]
+        ]
+    },
+    {
+        "id": "60404d3a428d9016",
+        "type": "mqtt in",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "topic": "table_soccer/red/score/cmd",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6884289e155fdc13",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "c2f17657313eab24"
+            ]
+        ]
+    },
+    {
+        "id": "f27115a384f33f31",
+        "type": "mqtt out",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "topic": "table_soccer/blue/score/value",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6884289e155fdc13",
+        "x": 650,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7a96e45b37edc7cd",
+        "type": "mqtt out",
+        "z": "323408c41fa23bbe",
+        "name": "",
+        "topic": "table_soccer/red/score/value",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6884289e155fdc13",
+        "x": 640,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "8dc2b85566167037",
+        "type": "inject",
+        "z": "a8f2ae93cff3f85f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sudo reboot",
+        "payloadType": "str",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "83b78b1f7f813cb0"
+            ]
+        ]
+    },
+    {
+        "id": "e3928ace53b74c19",
+        "type": "inject",
+        "z": "a8f2ae93cff3f85f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sudo halt",
+        "payloadType": "str",
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "83b78b1f7f813cb0"
+            ]
+        ]
+    },
+    {
+        "id": "83b78b1f7f813cb0",
+        "type": "exec",
+        "z": "a8f2ae93cff3f85f",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 420,
+        "y": 240,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    }
+]
